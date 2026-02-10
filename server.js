@@ -78,7 +78,7 @@ app.post("/bfhl", async (req, res) => {
     let result;
 
 
-    switch (key) {
+    switch (key.toLowerCase()) {
 
       case "fibonacci":
         result = getFibonacci(value);
@@ -107,7 +107,7 @@ app.post("/bfhl", async (req, res) => {
         result = lcmArray(value);
         break;
 
-      case "AI":
+      case "ai":
         if (typeof value !== "string") {
           throw new Error("AI expects string");
         }
@@ -130,6 +130,7 @@ app.post("/bfhl", async (req, res) => {
         result =
           aiResp.data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "UNKNOWN";
         break;
+
 
       default:
         return res.status(400).json({
